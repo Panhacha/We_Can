@@ -112,7 +112,8 @@ export default function Hero() {
       {activeSlides.map((slide, idx) => (
         <div 
           key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${current === idx ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out`}
+          style={{ opacity: current === idx ? 1 : 0, visibility: current === idx ? 'visible' : 'hidden' }}
         >
           {/* Gradient overlay to ensure text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent z-10 w-full md:w-3/4 lg:w-2/3"></div>
@@ -140,7 +141,8 @@ export default function Hero() {
           {activeSlides.map((slide, idx) => (
             <div 
               key={slide.id}
-              className={`transition-all duration-700 ease-out ${current === idx ? 'opacity-100 translate-y-0 relative' : 'opacity-0 translate-y-8 absolute top-0 left-0 pointer-events-none'}`}
+              className={`transition-all duration-700 ease-out ${current === idx ? 'translate-y-0 relative' : 'translate-y-8 absolute top-0 left-0 pointer-events-none'}`}
+              style={{ opacity: current === idx ? 1 : 0, visibility: current === idx ? 'visible' : 'hidden' }}
             >
               <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
                 {slide.title} <br />
