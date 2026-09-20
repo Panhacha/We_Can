@@ -47,7 +47,7 @@ export default function OrderTracker({ order, onUpdateStatus }: OrderTrackerProp
   
   // Find current stage index based on DB status
   let currentStageIndex = 0;
-  if (order.status === 'Confirmed') currentStageIndex = 2; // Treat Confirmed as Processing/Packing
+  if (order.status === 'Payment Confirmed') currentStageIndex = 2; // Treat Confirmed as Processing/Packing
   if (order.status === 'Delivered') currentStageIndex = 4; // Delivered
   
   // Handle edge cases
@@ -210,7 +210,7 @@ export default function OrderTracker({ order, onUpdateStatus }: OrderTrackerProp
             Return / Refund
           </button>
         )}
-        {(order.status === 'Pending' || order.status === 'Confirmed') && (
+        {(order.status === 'Pending' || order.status === 'Payment Confirmed') && (
           <button onClick={() => setShowCancelModal(true)} className="px-6 py-2.5 bg-white border border-gray-200 text-red-600 font-bold rounded-xl hover:bg-red-50 shadow-sm transition-all">
             Cancel Order
           </button>

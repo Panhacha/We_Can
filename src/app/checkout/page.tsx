@@ -63,7 +63,7 @@ export default function CheckoutPage() {
     const { name, value, type } = e.target as any;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? e.target.checked : value
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
     }));
   };
 

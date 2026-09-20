@@ -112,7 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         } else {
           localStorage.setItem('orders', JSON.stringify(orders));
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Storage Error in AuthContext:', error);
         if (error.name === 'QuotaExceededError') {
            try {

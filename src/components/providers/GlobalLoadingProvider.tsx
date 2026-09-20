@@ -1,7 +1,18 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import WeCanLoading from '@/components/ui/WeCanLoading';
+
+function LoadingStateObserver({ setIsLoading }: { setIsLoading: (s: boolean) => void }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [pathname, searchParams, setIsLoading]);
+
+  return null;
+}
 
 interface GlobalLoadingContextType {
   isLoading: boolean;
@@ -12,13 +23,6 @@ const GlobalLoadingContext = createContext<GlobalLoadingContextType | undefined>
 
 export function GlobalLoadingProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  // Turn off loading when navigation completes (pathname or query changes)
-  useEffect(() => {
-    setIsLoading(false);
-  }, [pathname, searchParams]);
 
   // Listen for clicks on links to trigger the loading screen immediately
   useEffect(() => {
@@ -53,6 +57,9 @@ export function GlobalLoadingProvider({ children }: { children: React.ReactNode 
 
   return (
     <GlobalLoadingContext.Provider value={{ isLoading, setGlobalLoading: setIsLoading }}>
+      <Suspense fallback={null}>
+        <LoadingStateObserver setIsLoading={setIsLoading} />
+      </Suspense>
       {children}
       {isLoading && (
         <div className="fixed inset-0 z-[99999] bg-white/70 backdrop-blur-sm flex items-center justify-center">

@@ -10,7 +10,7 @@ import WeCanLoading from '@/components/ui/WeCanLoading';
 export default function OrdersPage() {
   const router = useRouter();
   const { orders: localOrders, user } = useAuth();
-  const [liveOrders, setLiveOrders] = useState<Record<string, unknown>[]>([]);
+  const [liveOrders, setLiveOrders] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   
   // UI States

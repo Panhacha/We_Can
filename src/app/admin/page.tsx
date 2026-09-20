@@ -9,7 +9,7 @@ export default function AdminDashboard() {
   // Calculate metrics
   const totalRevenue = useMemo(() => {
     return orders
-      .filter(o => o.status === 'Delivered' || o.status === 'Shipped' || o.status === 'Confirmed' || o.status === 'Pending') // Actually maybe just delivered/shipped for real revenue, but let's count all non-cancelled
+      .filter(o => o.status === 'Delivered' || o.status === 'Confirmed' || o.status === 'Pending') // Actually maybe just delivered/shipped for real revenue, but let's count all non-cancelled
       .reduce((sum, order) => sum + order.total, 0);
   }, [orders]);
 
@@ -92,7 +92,6 @@ export default function AdminDashboard() {
                     <td className="py-4 px-6">
                       <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border ${
                         order.status === 'Delivered' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' :
-                        order.status === 'Shipped' ? 'bg-blue-500/10 text-blue-500 border-blue-500/20' :
                         order.status === 'Cancelled' ? 'bg-red-500/10 text-red-500 border-red-500/20' :
                         'bg-amber-500/10 text-amber-500 border-amber-500/20'
                       }`}>

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { useAdmin, Order } from '@/context/AdminContext';
-import { Search, Eye, FileText, Truck, Edit3, X, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Search, Eye, FileText, Truck, Edit3, X, CheckCircle, AlertTriangle, User, Package } from 'lucide-react';
 import InvoiceModal from '@/components/admin/InvoiceModal';
 
 export default function AdminOrders() {
@@ -14,7 +14,7 @@ export default function AdminOrders() {
   const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
   
   // Temporary state for the modal
-  const [tempStatus, setTempStatus] = useState<Order['status']>('Pending Payment');
+  const [tempStatus, setTempStatus] = useState<Order['status']>('Pending');
   const [tempPaymentStatus, setTempPaymentStatus] = useState<Order['paymentStatus']>('Pending');
   const [tempCourier, setTempCourier] = useState<Order['courier']>('');
   const [tempTracking, setTempTracking] = useState('');
@@ -230,7 +230,7 @@ export default function AdminOrders() {
                     <div className="space-y-3 text-sm">
                       <p><span className="font-bold text-gray-500 w-20 inline-block">Name:</span> <span className="font-bold text-gray-200">{selectedOrder.customerName}</span></p>
                       <p><span className="font-bold text-gray-500 w-20 inline-block">Phone:</span> <span className="font-bold text-gray-200">{selectedOrder.customerPhone || 'N/A'}</span></p>
-                      <p><span className="font-bold text-gray-500 w-20 inline-block">Email:</span> <span className="font-bold text-gray-200">{selectedOrder.customerEmail || 'N/A'}</span></p>
+                      <p><span className="font-bold text-gray-500 w-20 inline-block">Email:</span> <span className="font-bold text-gray-200">{(selectedOrder as any).customerEmail || 'N/A'}</span></p>
                     </div>
                   </div>
 

@@ -100,7 +100,8 @@ export default function Hero() {
 
   const handleBannerClick = async (slide: any) => {
     if (slide.isDbBanner) {
-      supabase.rpc('increment_banner_clicks', { banner_id: slide.id }).then().catch(console.error);
+      const { error } = await supabase.rpc('increment_banner_clicks', { banner_id: slide.id });
+      if (error) console.error(error);
     }
   };
 

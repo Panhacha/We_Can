@@ -21,7 +21,7 @@ export default function TrackOrderPage() {
   };
 
   const getStatusStep = (status: Order['status']) => {
-    switch (status) {
+    switch (status as any) {
       case 'Pending': return 1;
       case 'Confirmed': return 2;
       case 'Shipped': return 3;
@@ -70,7 +70,7 @@ export default function TrackOrderPage() {
                   <div className="text-right">
                     <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${
                       foundOrder.status === 'Delivered' ? 'bg-green-100 text-green-700' :
-                      foundOrder.status === 'Shipped' ? 'bg-blue-100 text-blue-700' :
+                      (foundOrder.status as any) === 'Shipped' ? 'bg-blue-100 text-blue-700' :
                       foundOrder.status === 'Cancelled' ? 'bg-red-100 text-red-700' :
                       'bg-orange-100 text-orange-700'
                     }`}>

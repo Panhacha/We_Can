@@ -52,7 +52,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         } else {
           localStorage.setItem('cart', JSON.stringify(items));
         }
-      } catch(error) { 
+      } catch(error: any) { 
         console.error('Storage Error', error); 
         if (error.name === 'QuotaExceededError') {
            try {
@@ -64,7 +64,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
            }
         }
       }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Failed to save cart to local storage:', error);
       }
     }

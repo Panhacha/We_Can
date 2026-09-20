@@ -19,7 +19,7 @@ export default function AddressesPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addAddress(formData);
+    addAddress({ ...formData, city: 'Unknown', postalCode: '00000', isDefault: false });
     setIsAdding(false);
     setFormData({ firstName: '', lastName: '', address: '',  phone: '' });
   };

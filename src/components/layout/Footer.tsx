@@ -8,7 +8,7 @@ export default function Footer() {
   if (pathname.startsWith('/admin')) return null;
 
   return (
-    <footer suppressHydrationWarning className="bg-white border-t border-gray-100 pt-16 pb-8" suppressHydrationWarning>
+    <footer suppressHydrationWarning className="bg-white border-t border-gray-100 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" suppressHydrationWarning>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12" suppressHydrationWarning>
           <div>

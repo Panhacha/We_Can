@@ -18,7 +18,7 @@ const productSchema = z.object({
 
 const defaultFormData = {
   name: '', price: '', originalPrice: '', category: '', subCategory: '', description: '',
-  stock: '', lowStockThreshold: '5', image: '', status: 'Active' as const
+  stock: '', lowStockThreshold: '5', image: '', status: 'Active' as 'Active' | 'Draft' | 'Out of Stock'
 };
 const defaultVariants = { colors: [], sizes: [], materials: [] };
 
@@ -169,7 +169,7 @@ export default function AdminProducts() {
       } catch (err) {
         hasErrors = true;
         if (err instanceof z.ZodError) {
-          err.errors.forEach(e => {
+          (err as any).errors.forEach((e: any) => {
             if (e.path[0]) allErrors[`${i}-${e.path[0]}`] = e.message;
           });
         }
@@ -274,7 +274,7 @@ export default function AdminProducts() {
                       <td className="py-4 px-6">
                         <div className="flex items-center gap-2">
                           <span className={`font-medium text-sm ${isLowStock ? 'text-red-500' : 'text-gray-300'}`}>{product.stock}</span>
-                          {isLowStock && <AlertTriangle className="w-3 h-3 text-red-500" title="Low Stock Warning" />}
+                          {isLowStock && <AlertTriangle className="w-3 h-3 text-red-500" />}
                         </div>
                       </td>
                       <td className="py-4 px-6">

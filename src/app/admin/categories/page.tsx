@@ -61,7 +61,7 @@ export default function AdminCategories() {
     } catch (err) {
       if (err instanceof z.ZodError) {
         const errors: Record<string, string> = {};
-        err.errors.forEach(e => {
+        (err as any).errors.forEach((e: any) => {
           if (e.path[0]) errors[e.path[0].toString()] = e.message;
         });
         setFormErrors(errors);
