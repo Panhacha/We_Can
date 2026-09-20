@@ -101,36 +101,37 @@ export default function Navbar() {
 
         </div>
       </nav>
+    </div>
 
-      {/* Mobile Menu Drawer */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-28 px-6 overflow-y-auto">
-          <div className="flex flex-col space-y-6 text-center">
-            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname === '/' ? 'text-gray-900' : 'text-gray-500'}`}>Home</Link>
-            <Link href="/shop" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname.startsWith('/shop') ? 'text-gray-900' : 'text-gray-500'}`}>Shop</Link>
-            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname === '/about' ? 'text-gray-900' : 'text-gray-500'}`}>About</Link>
-            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname === '/contact' ? 'text-gray-900' : 'text-gray-500'}`}>Contact</Link>
-            <Link href="/track" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname === '/track' ? 'text-gray-900' : 'text-gray-500'}`}>Track Orders</Link>
-            <div className="pt-6 flex flex-col gap-4">
-              <form action="/shop" method="GET" className="relative flex items-center bg-gray-100 rounded-full overflow-hidden w-full h-12 px-4" onSubmit={() => setIsMobileMenuOpen(false)}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500 mr-2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" name="q" placeholder="Search products..." className="bg-transparent border-none outline-none w-full text-sm" />
-              </form>
-              <div className="flex justify-center gap-4">
-                <Link href="/wishlist" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-pink-50 text-pink-500 px-6 py-3 rounded-full font-bold flex-1">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                  Wishlist ({wishlistItems})
-                </Link>
-                <Link href="/cart" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full font-bold flex-1">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                  Cart ({totalItems})
-                </Link>
-              </div>
+    {/* Mobile Menu Drawer */}
+    {isMobileMenuOpen && (
+      <div className="lg:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-28 px-6 overflow-y-auto">
+        <div className="flex flex-col space-y-6 text-center">
+          <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname === '/' ? 'text-gray-900' : 'text-gray-500'}`}>Home</Link>
+          <Link href="/shop" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname.startsWith('/shop') ? 'text-gray-900' : 'text-gray-500'}`}>Shop</Link>
+          <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname === '/about' ? 'text-gray-900' : 'text-gray-500'}`}>About</Link>
+          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname === '/contact' ? 'text-gray-900' : 'text-gray-500'}`}>Contact</Link>
+          <Link href="/track" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${pathname === '/track' ? 'text-gray-900' : 'text-gray-500'}`}>Track Orders</Link>
+          <div className="pt-6 flex flex-col gap-4">
+            <form action="/shop" method="GET" className="relative flex items-center bg-gray-100 rounded-full overflow-hidden w-full h-12 px-4" onSubmit={() => setIsMobileMenuOpen(false)}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500 mr-2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" name="q" placeholder="Search products..." className="bg-transparent border-none outline-none w-full text-sm" />
+            </form>
+            <div className="flex justify-center gap-4 pb-12">
+              <Link href="/wishlist" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-pink-50 text-pink-500 px-6 py-3 rounded-full font-bold flex-1">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                Wishlist ({wishlistItems})
+              </Link>
+              <Link href="/cart" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full font-bold flex-1">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                Cart ({totalItems})
+              </Link>
             </div>
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    )}
+    
     {pathname !== '/' && <div className="h-28"></div>}
     </>
   );
