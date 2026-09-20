@@ -93,7 +93,7 @@ export default function ShopPage() {
               <p className="text-gray-500 text-lg">No products found in this category.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-x-4 gap-y-8">
+            <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-x-2 gap-y-6 md:gap-x-4 md:gap-y-8">
               {displayProducts.map((product, idx) => (
                 <ProductCard 
                   key={`${product.id}-${idx}`} 

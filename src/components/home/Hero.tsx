@@ -106,7 +106,7 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative bg-white overflow-hidden min-h-[600px] flex items-center">
+    <div className="relative bg-white overflow-hidden min-h-[400px] md:min-h-[600px] flex items-center">
       
       {/* Background Image Carousel */}
       {activeSlides.map((slide, idx) => (
@@ -135,14 +135,14 @@ export default function Hero() {
         </div>
       ))}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 relative z-20 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32 relative z-20 w-full">
         <div className="md:w-2/3 lg:w-1/2 relative min-h-[280px]">
           {activeSlides.map((slide, idx) => (
             <div 
               key={slide.id}
               className={`transition-all duration-700 ease-out ${current === idx ? 'opacity-100 translate-y-0 relative' : 'opacity-0 translate-y-8 absolute top-0 left-0 pointer-events-none'}`}
             >
-              <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
+              <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
                 {slide.title} <br />
                 {slide.highlight && (
                   <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">

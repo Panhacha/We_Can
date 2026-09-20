@@ -26,7 +26,7 @@ export default function FeaturedProducts() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 pt-4">
+        <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 gap-2 md:gap-4 pt-4">
           {popularProducts.map((product) => (
             <div key={product.id} className="w-full">
               <ProductCard 
