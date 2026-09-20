@@ -17,32 +17,33 @@ export default function CategoryRow({ selectedCategory, onSelectCategory }: Cate
   // Duplicate arrays heavily so the loop is seamless even on ultra-wide screens
   const row1 = Array(12).fill(baseRow1).flat();
   const row2 = Array(12).fill(baseRow2).flat();
+  const mobileRow = Array(12).fill(categories).flat();
 
-  const renderCategoryCard = (cat: any, idx: number) => (
+  const renderCategoryCard = (cat: any, idx: number, isMobile: boolean = false) => (
     <div 
-      key={`${cat.id}-${idx}`} 
+      key={`${cat.id}-${idx}${isMobile ? '-mobile' : ''}`} 
       onClick={() => onSelectCategory(cat.name)}
-      className={`group flex items-center justify-between p-4 sm:p-5 cursor-pointer rounded-2xl w-[300px] shrink-0 transition-all duration-300 ${
+      className={`group flex flex-col md:flex-row items-center md:justify-between p-2.5 md:p-4 sm:p-5 cursor-pointer rounded-xl md:rounded-2xl w-[85px] sm:w-[100px] md:w-[300px] shrink-0 transition-all duration-300 ${
         selectedCategory === cat.name 
-          ? 'bg-blue-50 border-2 border-primary shadow-md' 
-          : 'bg-white border-2 border-gray-100 hover:border-gray-200 hover:shadow-xl'
+          ? 'bg-blue-50 border md:border-2 border-primary shadow-md' 
+          : 'bg-white border md:border-2 border-gray-100 hover:border-gray-200 hover:shadow-xl'
       }`}
     >
-      <div className="flex flex-col pr-4">
-        <span className={`text-base font-bold mb-1 transition-colors ${selectedCategory === cat.name ? 'text-primary' : 'text-gray-900 group-hover:text-primary'}`}>
+      <div className={`flex flex-col items-center md:items-start w-full md:pr-4 order-last md:order-first mt-1 md:mt-0`}>
+        <span className={`text-[11px] sm:text-xs md:text-base font-bold mb-0 md:mb-1 transition-colors text-center md:text-left w-full truncate md:whitespace-normal ${selectedCategory === cat.name ? 'text-primary' : 'text-gray-900 group-hover:text-primary'}`}>
           {cat.name}
         </span>
-        <span className={`text-sm font-medium ${selectedCategory === cat.name ? 'text-blue-600/80' : 'text-gray-400'}`}>
+        <span className={`hidden md:block text-sm font-medium ${selectedCategory === cat.name ? 'text-blue-600/80' : 'text-gray-400'}`}>
           {products.filter(p => p.category === cat.name && p.status === 'Active').length} Products
         </span>
       </div>
       
-      <div className={`relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 transition-transform duration-500 group-hover:scale-110 ${selectedCategory === cat.name ? 'ring-4 ring-white shadow-lg' : 'shadow-sm'}`}>
+      <div className={`relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0 transition-transform duration-500 group-hover:scale-110 ${selectedCategory === cat.name ? 'ring-2 md:ring-4 ring-white shadow-lg' : 'shadow-sm'} order-first md:order-last`}>
         <Image 
           src={cat.image} 
           alt={cat.name} 
           fill 
-          sizes="96px" 
+          sizes="(max-width: 768px) 48px, 96px" 
           className="object-cover" 
         />
       </div>
@@ -50,7 +51,7 @@ export default function CategoryRow({ selectedCategory, onSelectCategory }: Cate
   );
 
   return (
-    <div className="mb-20 overflow-hidden relative">
+    <div className="mb-8 md:mb-20 overflow-hidden relative">
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes scroll-rtl {
           0% { transform: translateX(0); }
@@ -87,15 +88,15 @@ export default function CategoryRow({ selectedCategory, onSelectCategory }: Cate
       </div>
       
       {/* Marquee Container */}
-      <div className="flex flex-col gap-4 marquee-container">
+      <div className="flex flex-col gap-3 sm:gap-4 marquee-container">
         
         {/* Row 1: Right to Left */}
-        <div className="flex w-max animate-scroll-rtl gap-4">
+        <div className="flex w-max animate-scroll-rtl gap-3 sm:gap-4">
           {row1.map((cat, idx) => renderCategoryCard(cat, idx))}
         </div>
 
         {/* Row 2: Left to Right */}
-        <div className="flex w-max animate-scroll-ltr gap-4">
+        <div className="flex w-max animate-scroll-ltr gap-3 sm:gap-4">
           {row2.map((cat, idx) => renderCategoryCard(cat, idx))}
         </div>
 

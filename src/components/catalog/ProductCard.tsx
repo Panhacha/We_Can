@@ -63,65 +63,63 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="group flex flex-col gap-1.5 md:gap-3 relative">
+    <div className="group flex flex-col bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full border border-gray-100/50">
       {/* Badges */}
-      {product.isNew && (
-        <div className="absolute top-1 left-1 md:top-2 md:left-2 z-10 px-1 md:px-2 py-0.5 md:py-1 text-[8px] md:text-[11px] font-bold uppercase tracking-wider text-white rounded bg-gray-900">
-          New
-        </div>
-      )}
-      {product.status === 'Out of Stock' && (
-        <div className="absolute top-1 right-1 md:top-2 md:right-2 z-10 px-1 md:px-2 py-0.5 md:py-1 text-[8px] md:text-[11px] font-bold uppercase tracking-wider text-white rounded bg-red-600">
-          Out of Stock
-        </div>
-      )}
-
-      {/* Image */}
-      <Link href={`/shop/${product.id}`} className="relative aspect-[4/5] w-full rounded-xl md:rounded-2xl overflow-hidden bg-[#f5f7f9] block">
-        {product.image ? (
-          <Image 
-            src={product.image} 
-            alt={product.name || 'Product'} 
-            fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105 mix-blend-multiply"
-          />
-        ) : (
-          <div className="w-full h-full bg-[#f5f7f9] flex items-center justify-center text-gray-400">No Image</div>
+      <div className="relative">
+        {product.isNew && (
+          <div className="absolute top-1 left-1 md:top-2 md:left-2 z-10 px-1 md:px-2 py-0.5 md:py-1 text-[8px] md:text-[10px] font-bold uppercase text-white rounded-md bg-gradient-to-r from-red-500 to-orange-500">
+            New
+          </div>
         )}
-      </Link>
+        {product.status === 'Out of Stock' && (
+          <div className="absolute top-1 right-1 md:top-2 md:right-2 z-10 px-1 md:px-2 py-0.5 md:py-1 text-[8px] md:text-[10px] font-bold uppercase text-white rounded-md bg-gray-800/80">
+            Sold Out
+          </div>
+        )}
+
+        {/* Image */}
+        <Link href={`/shop/${product.id}`} className="relative aspect-square w-full bg-[#f5f7f9] block">
+          {product.image ? (
+            <Image 
+              src={product.image} 
+              alt={product.name || 'Product'} 
+              fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-full bg-[#f5f7f9] flex items-center justify-center text-gray-400">No Image</div>
+          )}
+        </Link>
+      </div>
 
       {/* Info */}
-      <div className="flex flex-col gap-1 mt-2">
-        <Link href={`/shop/${product.id}`} className="text-[10px] md:text-[15px] font-bold text-gray-900 hover:text-primary transition-colors line-clamp-2 md:line-clamp-1 leading-snug">{product.name}</Link>
+      <div className="flex flex-col flex-1 p-2 md:p-3">
+        <Link href={`/shop/${product.id}`} className="text-[12px] md:text-[14px] font-medium text-gray-800 hover:text-primary transition-colors line-clamp-2 leading-tight mb-1">{product.name}</Link>
         
-        {/* Description fallback */}
-        <p className="hidden md:block text-[12px] text-gray-400 line-clamp-2 leading-relaxed">
-           {product.description || `Minimalist ${product.category?.toLowerCase() || 'design'} built for city adventures and daily wear.`}
-        </p>
+        {/* Free Shipping Tag (Taobao style) */}
+        <div className="mt-1 mb-2">
+          <span className="inline-block px-1.5 py-0.5 bg-green-50 text-green-600 text-[9px] md:text-[10px] font-bold rounded">
+            Free Shipping
+          </span>
+        </div>
         
-        <div className="flex items-center justify-between mt-1.5">
-          <div className="flex items-center gap-1 flex-wrap">
-            <span className="text-[11px] md:text-[14px] font-black text-gray-900">${Number(product.price || 0).toFixed(2)}</span>
+        <div className="mt-auto flex items-end justify-between">
+          <div className="flex items-baseline gap-1">
+            <span className="text-[10px] md:text-[12px] font-bold text-[#ff5000]">$</span>
+            <span className="text-[15px] md:text-[18px] font-extrabold text-[#ff5000] leading-none">{Number(product.price || 0).toFixed(2)}</span>
             {product.originalPrice && (
-              <span className="text-[9px] md:text-[11px] font-medium text-gray-400 line-through">${Number(product.originalPrice).toFixed(2)}</span>
+              <span className="text-[9px] md:text-[11px] text-gray-400 line-through ml-1">${Number(product.originalPrice).toFixed(2)}</span>
             )}
           </div>
           
-          <div className="flex items-center gap-1.5">
-            {/* Wishlist Icon */}
-            <button 
-              className={`w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded transition-colors focus:outline-none hover:bg-gray-100 text-gray-400`}
-              onClick={handleToggleWishlist}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill={isLiked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${isLiked ? "text-red-500" : ""} md:w-[15px] md:h-[15px]`}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            </button>
-            
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] text-gray-400 hidden sm:inline-block">{product.stock > 0 ? `${product.stock * 3} sold` : ''}</span>
             {/* Cart Icon */}
             <button 
-              className={`w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded border border-gray-200 transition-colors focus:outline-none ${product.status === 'Out of Stock' ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:text-gray-900 hover:border-gray-300 hover:bg-gray-50'}`}
+              className={`w-6 h-6 md:w-7 md:h-7 flex items-center justify-center rounded-full transition-colors focus:outline-none ${product.status === 'Out of Stock' ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-[#ff5000] text-white shadow-sm shadow-orange-200 hover:bg-[#e64800]'}`}
               onClick={handleQuickAdd}
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="md:w-[14px] md:h-[14px]"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[14px] md:h-[14px]"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
             </button>
           </div>
         </div>

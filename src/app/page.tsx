@@ -1,30 +1,17 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
 import Hero from "@/components/home/Hero";
-import FeaturedProducts from "@/components/home/FeaturedProducts";
-import NewArrivals from "@/components/home/NewArrivals";
-import CategoryRow from '@/components/shop/CategoryRow';
+import AllProducts from '@/components/home/AllProducts';
+import TaobaoSearchTop from '@/components/home/TaobaoSearchTop';
+import TaobaoCategories from '@/components/home/TaobaoCategories';
 
 export default function Home() {
-  const router = useRouter();
-
   return (
-    <div>
+    <div className="bg-gray-50 min-h-screen">
+      <TaobaoSearchTop />
       <Hero />
-      
-      {/* Category Section on Homepage */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <CategoryRow 
-            selectedCategory={null}
-            onSelectCategory={(cat) => router.push(`/shop?category=${encodeURIComponent(cat)}`)}
-          />
-        </div>
-      </div>
-
-      <FeaturedProducts />
-      <NewArrivals />
+      <TaobaoCategories />
+      <AllProducts />
     </div>
   );
 }

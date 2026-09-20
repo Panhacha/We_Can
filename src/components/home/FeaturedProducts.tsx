@@ -11,7 +11,7 @@ export default function FeaturedProducts() {
   const popularProducts = products.filter(p => p.status === 'Active').slice(0, 12);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-8 md:py-20 bg-white">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-12">
           <div>

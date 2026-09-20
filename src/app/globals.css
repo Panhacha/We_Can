@@ -60,3 +60,17 @@ body {
   animation-play-state: paused;
 }
 
+
+.elegant-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+.elegant-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.elegant-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.elegant-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
